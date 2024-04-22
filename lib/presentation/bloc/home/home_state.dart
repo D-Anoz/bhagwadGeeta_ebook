@@ -1,6 +1,4 @@
-import 'package:ebook/data/models/chapter_model.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+part of 'home_bloc.dart';
 
 @immutable
 abstract class HomeState extends Equatable {
@@ -17,9 +15,7 @@ class HomeLoadedState extends HomeState {
 
   HomeLoadedState({required this.chapList});
   @override
-  List<Object> get props => [
-        chapList
-      ];
+  List<Object> get props => [chapList];
 }
 
 class HomeLoadingErrorState extends HomeState {
@@ -28,9 +24,7 @@ class HomeLoadingErrorState extends HomeState {
   HomeLoadingErrorState({required this.errorMsg});
 
   @override
-  List<Object> get props => [
-        errorMsg
-      ];
+  List<Object> get props => [errorMsg];
 }
 
 class VerseSelectedState extends HomeState {
@@ -39,7 +33,5 @@ class VerseSelectedState extends HomeState {
   VerseSelectedState({required this.selectedIndex});
 
   @override
-  List<Object> get props => [
-        selectedIndex
-      ];
+  List<Object> get props => [selectedIndex];
 }

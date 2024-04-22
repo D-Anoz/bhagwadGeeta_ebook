@@ -6,9 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../bloc/splash/splash_event.dart';
-import '../../bloc/splash/splash_state.dart';
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -22,8 +19,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<SplashBloc>(context).add(AppStartedEvent());
-    // final isOnboardingDone = await SharedPreferenceHelper().getOnboardingComplete;
     getValue();
     print(isOnboardingDone);
   }
@@ -37,9 +32,13 @@ class _SplashScreenState extends State<SplashScreen> {
             // isOnboardingDone ? Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen())) : Navigator.push(context, MaterialPageRoute(builder: (context) => const OnboardingScreenOne()));
 
             if (isOnboardingDone != null && isOnboardingDone!) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const HomeScreen()));
             } else {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const OnboardingScreenOne()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const OnboardingScreenOne()));
             }
           }
         },

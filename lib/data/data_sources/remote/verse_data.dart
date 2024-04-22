@@ -19,7 +19,11 @@ class VerseRepo {
     final connectivityResult = await ApiService.checkInternetConnection();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        final response = await http.get(Uri.parse('https://bhagavad-gita3.p.rapidapi.com/v2/chapters/$id/verses/'), headers: ApiHeader().header);
+        //! Create a base Url to be used everywhere and a String file to denote endpoints.
+        final response = await http.get(
+            Uri.parse(
+                'https://bhagavad-gita3.p.rapidapi.com/v2/chapters/$id/verses/'),
+            headers: ApiHeader().header);
         if (response.statusCode == 200) {
           print('the id is:$id');
           final List<dynamic> result = json.decode(response.body);
@@ -38,7 +42,10 @@ class VerseRepo {
         rethrow;
       }
     } else {
-      Fluttertoast.showToast(msg: 'Failed fetching data,no internet found.', timeInSecForIosWeb: 90, toastLength: Toast.LENGTH_LONG);
+      Fluttertoast.showToast(
+          msg: 'Failed fetching data,no internet found.',
+          timeInSecForIosWeb: 90,
+          toastLength: Toast.LENGTH_LONG);
       return [];
     }
   }
@@ -50,7 +57,9 @@ class VerseRepo {
     final connectivityResult = await ApiService.checkInternetConnection();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        final response = await http.get(Uri.parse('https://bhagavad-gita3.p.rapidapi.com/v2/chapters/'), headers: ApiHeader().header);
+        final response = await http.get(
+            Uri.parse('https://bhagavad-gita3.p.rapidapi.com/v2/chapters/'),
+            headers: ApiHeader().header);
         if (response.statusCode == 200) {
           print(response.statusCode);
 
@@ -70,7 +79,10 @@ class VerseRepo {
         rethrow;
       }
     } else {
-      Fluttertoast.showToast(msg: 'Failed fetching data,no internet found.', timeInSecForIosWeb: 90, toastLength: Toast.LENGTH_LONG);
+      Fluttertoast.showToast(
+          msg: 'Failed fetching data,no internet found.',
+          timeInSecForIosWeb: 90,
+          toastLength: Toast.LENGTH_LONG);
       return [];
     }
   }
@@ -81,13 +93,17 @@ class VerseRepo {
     final connectivityResult = await ApiService.checkInternetConnection();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        final response = await http.get(Uri.parse('https://bhagavad-gita3.p.rapidapi.com/v2/chapters/1/verses/1/'), headers: ApiHeader().header);
+        final response = await http.get(
+            Uri.parse(
+                'https://bhagavad-gita3.p.rapidapi.com/v2/chapters/1/verses/1/'),
+            headers: ApiHeader().header);
         if (response.statusCode != 200) {
           print(response.statusCode);
           throw Exception('Failed to load the data');
         }
 
-        final parsedData = json.decode(utf8.decode(response.bodyBytes)); //uft8.decode is used to make the sys support the nepali font
+        final parsedData = json.decode(utf8.decode(response
+            .bodyBytes)); //uft8.decode is used to make the sys support the nepali font
 
         return IndividualVerseModel.fromJson(parsedData);
       } catch (ex) {
@@ -95,7 +111,10 @@ class VerseRepo {
         rethrow;
       }
     } else {
-      Fluttertoast.showToast(msg: 'Failed fetching data,no internet found.', timeInSecForIosWeb: 90, toastLength: Toast.LENGTH_LONG);
+      Fluttertoast.showToast(
+          msg: 'Failed fetching data,no internet found.',
+          timeInSecForIosWeb: 90,
+          toastLength: Toast.LENGTH_LONG);
       throw Exception('No internet connection');
     }
   }
