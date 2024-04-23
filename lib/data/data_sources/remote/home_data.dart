@@ -14,11 +14,16 @@ class HomeRepo {
     final connectivityResult = await ApiService.checkInternetConnection();
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        final response = await http.get(Uri.parse('https://bhagavad-gita3.p.rapidapi.com/v2/chapters/'), headers: ApiHeader().header);
+        //! Create a base Url to be used everywhere and a String file to denote endpoints.
+        final response = await http.get(
+            Uri.parse('https://bhagavad-gita3.p.rapidapi.com/v2/chapters/'),
+            headers: ApiHeader().header);
         if (response.statusCode == 200) {
           print('success from ');
           final List<dynamic> result = json.decode(response.body);
-          chapters = result.map<ChapterModel>((json) => ChapterModel.fromJson(json)).toList();
+          chapters = result
+              .map<ChapterModel>((json) => ChapterModel.fromJson(json))
+              .toList();
           return chapters;
         } else {
           print('Status code:${response.statusCode}');
@@ -29,7 +34,10 @@ class HomeRepo {
       }
     } else {
       print('No internet');
-      Fluttertoast.showToast(msg: 'Failed fetching data,no internet found.', timeInSecForIosWeb: 90, toastLength: Toast.LENGTH_LONG);
+      Fluttertoast.showToast(
+          msg: 'Failed fetching data,no internet found.',
+          timeInSecForIosWeb: 90,
+          toastLength: Toast.LENGTH_LONG);
       return [];
     }
   }

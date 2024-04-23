@@ -11,19 +11,27 @@ import 'presentation/screens/splash/splash.dart';
 
 void main() {
   runApp(MultiBlocProvider(
+    //! Better to use _ for any params if it is not used
     providers: [
-      BlocProvider<SplashBloc>(create: (context) => SplashBloc()),
-      BlocProvider<HomeBloc>(create: (context) => HomeBloc()),
-      BlocProvider<VersesBloc>(create: (context) => VersesBloc()),
-      BlocProvider<SelectedChapterBloc>(create: (context) => SelectedChapterBloc()),
-      BlocProvider<IndividualVerseBloc>(create: (context) => IndividualVerseBloc()),
+      //! Method call that is triggered in initState can be called here as below
+      BlocProvider<SplashBloc>(
+        create: (_) => SplashBloc()
+          ..add(
+            AppStartedEvent(),
+          ),
+      ),
+      BlocProvider<HomeBloc>(create: (_) => HomeBloc()),
+      BlocProvider<VersesBloc>(create: (_) => VersesBloc()),
+      BlocProvider<SelectedChapterBloc>(create: (_) => SelectedChapterBloc()),
+      BlocProvider<IndividualVerseBloc>(create: (_) => IndividualVerseBloc()),
     ],
     child: MaterialApp(
       theme: ThemeData(
           appBarTheme: const AppBarTheme(
             color: AppColors.appBarColor,
           ),
-          textTheme: const TextTheme(bodyLarge: TextStyle(color: Colors.white))),
+          textTheme:
+              const TextTheme(bodyLarge: TextStyle(color: Colors.white))),
       home: const SplashScreen(),
     ),
   ));

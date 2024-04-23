@@ -1,7 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebook/data/data_sources/remote/home_data.dart';
-import 'package:ebook/presentation/bloc/home/home_event.dart';
-import 'package:ebook/presentation/bloc/home/home_state.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:ebook/data/models/chapter_model.dart';
+
+part 'home_event.dart';
+part 'home_state.dart';
+
+//! Use part and part of in other blocs in similar way. Doing so we need to import only one bloc file while using event or states.
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepo repo = HomeRepo();

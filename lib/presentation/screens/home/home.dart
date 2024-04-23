@@ -1,11 +1,9 @@
 import 'package:ebook/core/constants/colors.dart';
 import 'package:ebook/core/constants/images.dart';
 import 'package:ebook/presentation/bloc/home/home_bloc.dart';
-import 'package:ebook/presentation/bloc/home/home_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/home/home_state.dart';
 import '../verses/verse.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -79,7 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(
                             'Last read',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           Text('VERSE 7.27'),
                         ],
@@ -87,13 +86,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text('O Bharata, all beings are subject to delusion at birth due to the delusion of the pairs of opposites arising form desire and aversion, OParantapa'),
+                      Text(
+                          'O Bharata, all beings are subject to delusion at birth due to the delusion of the pairs of opposites arising form desire and aversion, OParantapa'),
                       SizedBox(
                         height: 10,
                       ),
                       Text(
                         'CONTINUE READING ',
-                        style: TextStyle(color: AppColors.smoothPageScrollActiveDot),
+                        style: TextStyle(
+                            color: AppColors.smoothPageScrollActiveDot),
                       )
                     ],
                   ),
@@ -110,7 +111,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           child: GestureDetector(
                             onTap: () {
-                              print('Verse id/index passed to the verse screen: ${chapIndex.id}');
+                              print(
+                                  'Verse id/index passed to the verse screen: ${chapIndex.id}');
                               // vBloc.getVerse(chapIndex.id.toString());
                               // hBloc.add(VerseSelectedEvent(chapIndex.id ?? 1));
                               Navigator.push(
@@ -123,13 +125,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: ListTile(
                               leading: CircleAvatar(
                                 radius: 29,
-                                backgroundColor: AppColors.smoothPageScrollActiveDot,
+                                backgroundColor:
+                                    AppColors.smoothPageScrollActiveDot,
                                 child: Text(
                                   chapIndex.id.toString(),
-                                  style: const TextStyle(color: AppColors.obText, fontSize: 16),
+                                  style: const TextStyle(
+                                      color: AppColors.obText, fontSize: 16),
                                 ),
                               ),
-                              title: Text(chapIndex.nameTranslated ?? 'Untitled title'),
+                              title: Text(
+                                  chapIndex.nameTranslated ?? 'Untitled title'),
                               subtitle: Row(
                                 children: [
                                   const Icon(Icons.list),

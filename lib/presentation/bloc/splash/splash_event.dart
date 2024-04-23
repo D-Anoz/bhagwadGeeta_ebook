@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+part of 'splash_bloc.dart';
 
 @immutable
 abstract class SplashEvent extends Equatable {

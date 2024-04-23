@@ -18,13 +18,22 @@ class selectedChapterRepo {
 
     if (connectivityResult != ConnectivityResult.none) {
       try {
-        final response = await http.get((Uri.parse('https://bhagavad-gita3.p.rapidapi.com/v2/chapters/1/verses/1/')), headers: ApiHeader().header);
+        //! Create a base Url to be used everywhere and a String file to denote endpoints.
+        //* You can call [HttpService] from here.
+        final response = await http.get(
+            (Uri.parse(
+                'https://bhagavad-gita3.p.rapidapi.com/v2/chapters/1/verses/1/')),
+            headers: ApiHeader().header);
         if (response.statusCode == 200) {
-          final Map<String, dynamic> result = json.decode(utf8.decode(response.bodyBytes));
+          final Map<String, dynamic> result =
+              json.decode(utf8.decode(response.bodyBytes));
 
           if (result.containsKey('translations')) {
             final List<dynamic> chapterList = result['translations'];
-            final selChapters = chapterList.map<IndividualSelectedChapterModel>((json) => IndividualSelectedChapterModel.fromJson(json)).toList();
+            final selChapters = chapterList
+                .map<IndividualSelectedChapterModel>(
+                    (json) => IndividualSelectedChapterModel.fromJson(json))
+                .toList();
 
             print(selChapters.length);
             print(selChapters); // Print the entire list for further inspection
@@ -53,8 +62,29 @@ class selectedChapterRepo {
       }
     } else {
       debugPrint('No internet');
-      Fluttertoast.showToast(msg: 'Failed fetching data,no internet found.', timeInSecForIosWeb: 90, toastLength: Toast.LENGTH_LONG);
+      Fluttertoast.showToast(
+          msg: 'Failed fetching data,no internet found.',
+          timeInSecForIosWeb: 90,
+          toastLength: Toast.LENGTH_LONG);
       return [];
     }
   }
 }
+
+
+//!
+//!
+//!
+//!
+//!
+/*
+Bloc---> Repository ---> Remote source 
+Calls should in this if Clean code architecture is to be followed.
+The current logic used in the repository should be in remote source
+Repo will either call remote source or local source based on  the current online status then.
+*/
+//!
+//!
+//!
+//!
+

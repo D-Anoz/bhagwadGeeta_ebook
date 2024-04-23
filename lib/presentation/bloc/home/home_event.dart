@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+part of 'home_bloc.dart';
 
 @immutable
 abstract class HomeEvent extends Equatable {
@@ -15,7 +14,5 @@ class VerseSelectedEvent extends HomeEvent {
   VerseSelectedEvent(this.chapterId);
 
   @override
-  List<Object> get props => [
-        chapterId
-      ];
+  List<Object> get props => [chapterId];
 }
